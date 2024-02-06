@@ -9,7 +9,7 @@ export const sideNav = [
 		id: 1,
 		title: 'Hub',
 		icon: <DashboardIcon />,
-		path: '/',
+		path: '/hub',
 	},
 	{
 		id: 2,

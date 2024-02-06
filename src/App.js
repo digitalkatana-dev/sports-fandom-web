@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import MainLayout from './layouts/MainLayout';
+import Auth from './features/Auth';
 import Hub from './features/Hub';
 import Baseball from './features/Baseball';
 import Basketball from './features/Basketball';
@@ -12,7 +13,8 @@ function App() {
 		<Router>
 			<Routes>
 				<Route path='/'>
-					<Route index element={<MainLayout children={<Hub />} />} />
+					<Route index element={<Auth />} />
+					<Route path='hub' element={<MainLayout children={<Hub />} />} />
 					<Route
 						path='football'
 						element={<MainLayout children={<Football />} />}
