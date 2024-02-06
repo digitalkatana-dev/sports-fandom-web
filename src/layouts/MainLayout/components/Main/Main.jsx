@@ -1,15 +1,6 @@
-import { styled } from '@mui/material/styles';
 import { Box } from '@mui/material';
 import './main.scss';
-
-const DrawerHeader = styled('div')(({ theme }) => ({
-	display: 'flex',
-	alignItems: 'center',
-	justifyContent: 'center',
-	padding: theme.spacing(0, 1),
-	// necessary for content to be below app bar
-	...theme.mixins.toolbar,
-}));
+import DrawerHeader from '../../../../components/DrawerHeader';
 
 const Main = ({ children }) => {
 	return (

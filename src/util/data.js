@@ -8,31 +8,31 @@ export const sideNav = [
 	{
 		id: 1,
 		title: 'Hub',
-		icon: <DashboardIcon className='side-nav-icon' />,
+		icon: <DashboardIcon />,
 		path: '/',
 	},
 	{
 		id: 2,
 		title: 'Football',
-		icon: <FootballIcon className='side-nav-icon' />,
+		icon: <FootballIcon />,
 		path: '/football',
 	},
 	{
 		id: 3,
 		title: 'Basketball',
-		icon: <BasketballIcon className='side-nav-icon' />,
+		icon: <BasketballIcon />,
 		path: '/basketball',
 	},
 	{
 		id: 4,
 		title: 'Baseball',
-		icon: <BaseballIcon className='side-nav-icon' />,
+		icon: <BaseballIcon />,
 		path: '/baseball',
 	},
 	{
 		id: 5,
 		title: 'Hockey',
-		icon: <HockeyIcon className='side-nav-icon' />,
+		icon: <HockeyIcon />,
 		path: '/hockey',
 	},
 ];

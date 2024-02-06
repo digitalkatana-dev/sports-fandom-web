@@ -1,7 +1,5 @@
-import { styled } from '@mui/material/styles';
 import {
 	Divider,
-	Drawer as MuiDrawer,
 	IconButton,
 	List,
 	ListItem,
@@ -14,62 +12,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setDrawerOpen } from '../../../../redux/slices/appSlice';
 import { sideNav } from '../../../../util/data';
 import './sidebar.scss';
-
-const drawerWidth = 170;
-
-const openedMixin = (theme) => ({
-	width: drawerWidth,
-	backgroundColor: 'var(--primary)',
-	borderRightColor: 'white',
-	transition: theme.transitions.create('width', {
-		easing: theme.transitions.easing.sharp,
-		duration: theme.transitions.duration.enteringScreen,
-	}),
-	overflowX: 'hidden',
-});
-
-const closedMixin = (theme) => ({
-	backgroundColor: 'var(--primary)',
-	borderRightColor: 'white',
-	transition: theme.transitions.create('width', {
-		easing: theme.transitions.easing.sharp,
-		duration: theme.transitions.duration.leavingScreen,
-	}),
-	overflowX: 'hidden',
-	width: `calc(${theme.spacing(7)} + 1px)`,
-	[theme.breakpoints.up('sm')]: {
-		width: `calc(${theme.spacing(8)} + 1px)`,
-	},
-});
-
-const DrawerHeader = styled('div')(({ theme }) => ({
-	display: 'flex',
-	alignItems: 'center',
-	justifyContent: 'center',
-	padding: theme.spacing(0, 1),
-	// necessary for content to be below app bar
-	...theme.mixins.toolbar,
-}));
-
-const Drawer = styled(MuiDrawer, {
-	shouldForwardProp: (prop) => prop !== 'open',
-})(({ theme, open }) => ({
-	width: drawerWidth,
-	flexShrink: 0,
-	whiteSpace: 'nowrap',
-	boxSizing: 'border-box',
-	...(open && {
-		...openedMixin(theme),
-		'& .MuiDrawer-paper': openedMixin(theme),
-	}),
-	...(!open && {
-		...closedMixin(theme),
-		'& .MuiDrawer-paper': closedMixin(theme),
-	}),
-}));
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import LoginIcon from '@mui/icons-material/Login';
+import LogoutIcon from '@mui/icons-material/Logout';
+import Drawer from '../../../../components/Drawer';
+import DrawerHeader from '../../../../components/DrawerHeader';
 
 const Sidebar = () => {
 	const { drawerOpen } = useSelector((state) => state.app);
+	const { user } = useSelector((state) => state.user);
 	const dispatch = useDispatch();
 
 	const handleClose = () => {
@@ -77,13 +28,13 @@ const Sidebar = () => {
 	};
 
 	return (
-		<Drawer variant='permanent' open={drawerOpen}>
+		<Drawer id='sidebar' variant='permanent' open={drawerOpen}>
 			<DrawerHeader>
 				<IconButton onClick={handleClose}>
-					<MenuUnfoldOutlined style={{ color: 'var(--paragraph)' }} />
+					<MenuUnfoldOutlined className='menu-icon' />
 				</IconButton>
 			</DrawerHeader>
-			<Divider style={{ borderBottomColor: 'white' }} />
+			<Divider className='divider' />
 			<List>
 				{sideNav.map((navItem) => (
 					<ListItem
@@ -91,8 +42,8 @@ const Sidebar = () => {
 						disablePadding
 						sx={{
 							display: 'block',
-							borderRadius: '7px',
-							'&:hover': { backgroundColor: 'purple' },
+							borderRadius: '10px',
+							'&:hover': { backgroundColor: 'var(--highlight)' },
 						}}
 					>
 						<ListItemButton
@@ -123,6 +74,114 @@ const Sidebar = () => {
 						</ListItemButton>
 					</ListItem>
 				))}
+				{user ? (
+					<>
+						<ListItem
+							disablePadding
+							sx={{
+								display: 'block',
+								borderRadius: '10px',
+								'&:hover': { backgroundColor: 'var(--highlight)' },
+							}}
+						>
+							<ListItemButton
+								sx={{
+									minHeight: 48,
+									justifyContent: drawerOpen ? 'initial' : 'center',
+									px: 2.5,
+								}}
+								href='/profile'
+							>
+								<ListItemIcon
+									sx={{
+										minWidth: 0,
+										mr: drawerOpen ? 3 : 'auto',
+										justifyContent: 'center',
+										color: 'var(--paragraph)',
+									}}
+								>
+									<AccountCircleIcon />
+								</ListItemIcon>
+								<ListItemText
+									primary='Profile'
+									sx={{
+										opacity: drawerOpen ? 1 : 0,
+										color: 'var(--paragraph)',
+									}}
+								/>
+							</ListItemButton>
+						</ListItem>
+						<ListItem
+							disablePadding
+							sx={{
+								display: 'block',
+								borderRadius: '10px',
+								'&:hover': { backgroundColor: 'var(--highlight)' },
+							}}
+						>
+							<ListItemButton
+								sx={{
+									minHeight: 48,
+									justifyContent: drawerOpen ? 'initial' : 'center',
+									px: 2.5,
+								}}
+							>
+								<ListItemIcon
+									sx={{
+										minWidth: 0,
+										mr: drawerOpen ? 3 : 'auto',
+										justifyContent: 'center',
+										color: 'var(--paragraph)',
+									}}
+								>
+									<LogoutIcon />
+								</ListItemIcon>
+								<ListItemText
+									primary='Logout'
+									sx={{
+										opacity: drawerOpen ? 1 : 0,
+										color: 'var(--paragraph)',
+									}}
+								/>
+							</ListItemButton>
+						</ListItem>
+					</>
+				) : (
+					<ListItem
+						disablePadding
+						sx={{
+							display: 'block',
+							borderRadius: '10px',
+							'&:hover': { backgroundColor: 'var(--highlight)' },
+						}}
+					>
+						<ListItemButton
+							sx={{
+								minHeight: 48,
+								justifyContent: drawerOpen ? 'initial' : 'center',
+								px: 2.5,
+							}}
+						>
+							<ListItemIcon
+								sx={{
+									minWidth: 0,
+									mr: drawerOpen ? 3 : 'auto',
+									justifyContent: 'center',
+									color: 'var(--paragraph)',
+								}}
+							>
+								<LoginIcon />
+							</ListItemIcon>
+							<ListItemText
+								primary='Login'
+								sx={{
+									opacity: drawerOpen ? 1 : 0,
+									color: 'var(--paragraph)',
+								}}
+							/>
+						</ListItemButton>
+					</ListItem>
+				)}
 			</List>
 		</Drawer>
 	);
