@@ -1,0 +1,9 @@
+#app {
+	display: flex;
+
+	.canvas {
+		flex: 1;
+		border: 2px ridge crimson;
+		min-height: 100vh;
+	}
+}
