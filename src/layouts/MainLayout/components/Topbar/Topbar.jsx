@@ -10,11 +10,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setDrawerOpen } from '../../../../redux/slices/appSlice';
 import './topbar.scss';
 
-const drawerWidth = 160;
+const drawerWidth = 170;
 
 const AppBar = styled(MuiAppBar, {
 	shouldForwardProp: (prop) => prop !== 'open',
 })(({ theme, open }) => ({
+	backgroundColor: 'var(--secondary)',
 	zIndex: theme.zIndex.drawer + 1,
 	transition: theme.transitions.create(['width', 'margin'], {
 		easing: theme.transitions.easing.sharp,
@@ -46,7 +47,7 @@ const Topbar = () => {
 					edge='start'
 					sx={{ marginRight: 5, ...(drawerOpen && { display: 'none' }) }}
 				>
-					<MenuUnfoldOutlined className='menu-icon' />
+					<MenuUnfoldOutlined style={{ color: 'var(--paragraph)' }} />
 				</IconButton>
 				<Typography variant='h6' noWrap component='div'>
 					Sports Fandom

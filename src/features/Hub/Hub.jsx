@@ -1,7 +1,11 @@
 import React from 'react';
 
 const Hub = () => {
-	return <div>Hub</div>;
+	return (
+		<div>
+			<h1 style={{ color: 'white' }}>Hub</h1>
+		</div>
+	);
 };
 
 export default Hub;

@@ -9,6 +9,7 @@ const MainLayout = ({ children }) => {
 			<CssBaseline />
 			<Topbar />
 			<Sidebar />
+			<Main children={children} />
 		</Box>
 	);
 };

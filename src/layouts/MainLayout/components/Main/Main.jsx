@@ -5,7 +5,7 @@ import './main.scss';
 const DrawerHeader = styled('div')(({ theme }) => ({
 	display: 'flex',
 	alignItems: 'center',
-	justifyContent: 'flex-end',
+	justifyContent: 'center',
 	padding: theme.spacing(0, 1),
 	// necessary for content to be below app bar
 	...theme.mixins.toolbar,
@@ -13,7 +13,10 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 
 const Main = ({ children }) => {
 	return (
-		<Box component='main' sx={{ flexGrow: 1, p: 3 }}>
+		<Box
+			component='main'
+			sx={{ flexGrow: 1, p: 3, backgroundColor: 'var(--primary)' }}
+		>
 			<DrawerHeader />
 			{children}
 		</Box>

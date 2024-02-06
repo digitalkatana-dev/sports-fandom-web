@@ -15,10 +15,12 @@ import { setDrawerOpen } from '../../../../redux/slices/appSlice';
 import { sideNav } from '../../../../util/data';
 import './sidebar.scss';
 
-const drawerWidth = 160;
+const drawerWidth = 170;
 
 const openedMixin = (theme) => ({
 	width: drawerWidth,
+	backgroundColor: 'var(--primary)',
+	borderRightColor: 'white',
 	transition: theme.transitions.create('width', {
 		easing: theme.transitions.easing.sharp,
 		duration: theme.transitions.duration.enteringScreen,
@@ -27,6 +29,8 @@ const openedMixin = (theme) => ({
 });
 
 const closedMixin = (theme) => ({
+	backgroundColor: 'var(--primary)',
+	borderRightColor: 'white',
 	transition: theme.transitions.create('width', {
 		easing: theme.transitions.easing.sharp,
 		duration: theme.transitions.duration.leavingScreen,
@@ -41,7 +45,7 @@ const closedMixin = (theme) => ({
 const DrawerHeader = styled('div')(({ theme }) => ({
 	display: 'flex',
 	alignItems: 'center',
-	justifyContent: 'flex-end',
+	justifyContent: 'center',
 	padding: theme.spacing(0, 1),
 	// necessary for content to be below app bar
 	...theme.mixins.toolbar,
@@ -76,13 +80,21 @@ const Sidebar = () => {
 		<Drawer variant='permanent' open={drawerOpen}>
 			<DrawerHeader>
 				<IconButton onClick={handleClose}>
-					<MenuUnfoldOutlined className='menu-icon' />
+					<MenuUnfoldOutlined style={{ color: 'var(--paragraph)' }} />
 				</IconButton>
 			</DrawerHeader>
-			<Divider />
+			<Divider style={{ borderBottomColor: 'white' }} />
 			<List>
 				{sideNav.map((navItem) => (
-					<ListItem key={navItem.id} disablePadding sx={{ display: 'block' }}>
+					<ListItem
+						key={navItem.id}
+						disablePadding
+						sx={{
+							display: 'block',
+							borderRadius: '7px',
+							'&:hover': { backgroundColor: 'purple' },
+						}}
+					>
 						<ListItemButton
 							sx={{
 								minHeight: 48,
@@ -96,13 +108,17 @@ const Sidebar = () => {
 									minWidth: 0,
 									mr: drawerOpen ? 3 : 'auto',
 									justifyContent: 'center',
+									color: 'var(--paragraph)',
 								}}
 							>
 								{navItem.icon}
 							</ListItemIcon>
 							<ListItemText
 								primary={navItem.title}
-								sx={{ opacity: drawerOpen ? 1 : 0 }}
+								sx={{
+									opacity: drawerOpen ? 1 : 0,
+									color: 'var(--paragraph)',
+								}}
 							/>
 						</ListItemButton>
 					</ListItem>
