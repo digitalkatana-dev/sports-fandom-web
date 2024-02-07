@@ -9,15 +9,35 @@
 		padding: 35px;
 		border-radius: 50%;
 		background-color: var(--secondary);
-		border: 2px ridge var(--highlight);
+		border: 2px ridge var(--brand);
 
-		form {
+		.container {
 			display: flex;
 			flex-direction: column;
-			gap: 15px;
+			align-items: center;
+			padding: 26px 26px 30px 26px;
 
-			.input {
-				background-color: lightgrey;
+			.icon-btn {
+				margin-bottom: 15px;
+
+				.auth-type {
+					color: var(--paragraph);
+				}
+
+				.icon {
+					color: var(--highlight);
+				}
+			}
+
+			form {
+				display: flex;
+				flex-direction: column;
+				gap: 15px;
+
+				.input {
+					border-radius: 10px;
+					background-color: lightgrey;
+				}
 			}
 		}
 	}

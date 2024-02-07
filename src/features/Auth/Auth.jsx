@@ -1,6 +1,13 @@
-import { FormControl, Paper, TextField } from '@mui/material';
-import { useState } from 'react';
+import {
+	FormControl,
+	IconButton,
+	InputAdornment,
+	Paper,
+	TextField,
+} from '@mui/material';
+import { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
 import {
 	setFirstName,
 	setLastName,
@@ -8,6 +15,8 @@ import {
 	setHandle,
 	setLogin,
 	setPassword,
+	userLogin,
+	userRegister,
 	clearForm,
 	clearErrors,
 } from '../../redux/slices/userSlice';
@@ -19,10 +28,12 @@ import './auth.scss';
 import TouchableOpacity from '../../components/TouchableOpacity';
 
 const Auth = () => {
-	const { firstName, lastName, email, handle, login, password, errors } =
+	const { firstName, lastName, email, handle, login, password, user, errors } =
 		useSelector((state) => state.user);
 	const [authType, setAuthType] = useState('login');
+	const [show, setShow] = useState(false);
 	const formatted = authType.charAt(0).toUpperCase() + authType.slice(1);
+	const navigate = useNavigate();
 	const dispatch = useDispatch();
 
 	const handleToggle = () => {
@@ -53,99 +64,155 @@ const Auth = () => {
 		}
 	};
 
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		let data = {};
+		if (authType === 'login') {
+			data = {
+				login,
+				password,
+			};
+
+			dispatch(userLogin(data));
+		} else if (authType === 'register') {
+			data = {
+				firstName,
+				lastName,
+				email,
+				handle,
+				password,
+			};
+
+			dispatch(userRegister(data));
+		}
+	};
+
+	const handleUser = useCallback(() => {
+		if (user) {
+			navigate('/hub');
+		} else {
+			navigate('/');
+		}
+	}, [user, navigate]);
+
+	useEffect(() => {
+		handleUser();
+	}, [handleUser]);
+
 	return (
 		<div id='auth'>
 			<Paper className='surface' elevation={12}>
 				<div className='container'>
-					<TouchableOpacity onClick={handleToggle}>
-						<h2>{formatted}</h2>
+					<TouchableOpacity className='icon-btn' onClick={handleToggle}>
+						<h2 className='auth-type'>{formatted}</h2>
 						{authType === 'login' ? (
 							<LoginIcon className='icon' fontSize='large' />
 						) : (
 							<PersonAddIcon className='icon' fontSize='large' />
 						)}
 					</TouchableOpacity>
-				</div>
-				<form action=''>
-					{authType === 'register' && (
-						<>
+					<form onSubmit={handleSubmit}>
+						{authType === 'register' && (
+							<>
+								<FormControl variant='standard'>
+									<TextField
+										className='input'
+										label='First Name'
+										size='small'
+										value={firstName}
+										onFocus={handleFocus}
+										onChange={(e) => handleChange('first', e.target.value)}
+									/>
+									{errors?.firstName && (
+										<h6 className='error'>{errors.firstName}</h6>
+									)}
+								</FormControl>
+								<FormControl variant='standard'>
+									<TextField
+										className='input'
+										label='Last Name'
+										size='small'
+										value={lastName}
+										onFocus={handleFocus}
+										onChange={(e) => handleChange('last', e.target.value)}
+									/>
+									{errors?.lastName && (
+										<h6 className='error'>{errors.lastName}</h6>
+									)}
+								</FormControl>
+								<FormControl variant='standard'>
+									<TextField
+										className='input'
+										label='Email'
+										size='small'
+										value={email}
+										onFocus={handleFocus}
+										onChange={(e) => handleChange('email', e.target.value)}
+									/>
+									{errors?.eamil && <h6 className='error'>{errors?.eamil}</h6>}
+								</FormControl>
+								<FormControl variant='standard'>
+									<TextField
+										className='input'
+										label='Handle'
+										size='small'
+										value={handle}
+										onFocus={handleFocus}
+										onChange={(e) => handleChange('handle', e.target.value)}
+									/>
+									{errors?.handle && (
+										<h6 className='error'>{errors?.handle}</h6>
+									)}
+								</FormControl>
+							</>
+						)}
+						{authType === 'login' && (
 							<FormControl variant='standard'>
 								<TextField
 									className='input'
-									label='First Name'
+									label='Login'
 									size='small'
-									value={firstName}
+									value={login}
 									onFocus={handleFocus}
-									onChange={(e) => handleChange('first', e.target.value)}
+									onChange={(e) => handleChange('login', e.target.value)}
 								/>
-								{errors?.firstName && (
-									<h6 className='error'>{errors.firstName}</h6>
-								)}
+								{errors?.login && <h6 className='error'>{errors?.login}</h6>}
 							</FormControl>
-							<FormControl variant='standard'>
-								<TextField
-									className='input'
-									label='Last Name'
-									size='small'
-									value={lastName}
-									onFocus={handleFocus}
-									onChange={(e) => handleChange('last', e.target.value)}
-								/>
-								{errors?.lastName && (
-									<h6 className='error'>{errors.lastName}</h6>
-								)}
-							</FormControl>
-							<FormControl variant='standard'>
-								<TextField
-									className='input'
-									label='Email'
-									size='small'
-									value={email}
-									onFocus={handleFocus}
-									onChange={(e) => handleChange('email', e.target.value)}
-								/>
-								{errors?.eamil && <h6 className='error'>{errors?.eamil}</h6>}
-							</FormControl>
-							<FormControl variant='standard'>
-								<TextField
-									className='input'
-									label='Handle'
-									size='small'
-									value={handle}
-									onFocus={handleFocus}
-									onChange={(e) => handleChange('handle', e.target.value)}
-								/>
-								{errors?.handle && <h6 className='error'>{errors?.handle}</h6>}
-							</FormControl>
-						</>
-					)}
-					{authType === 'login' && (
+						)}
 						<FormControl variant='standard'>
 							<TextField
 								className='input'
-								label='Login'
+								type={show ? 'text' : 'password'}
+								label='Password'
 								size='small'
-								value={login}
+								value={password}
 								onFocus={handleFocus}
-								onChange={(e) => handleChange('login', e.target.value)}
+								onChange={(e) => handleChange('password', e.target.value)}
+								InputProps={{
+									endAdornment: (
+										<InputAdornment position='end'>
+											<IconButton
+												onClick={() => setShow(!show)}
+												onMouseDown={(e) => e.preventDefault()}
+												edge='end'
+											>
+												{show ? (
+													<VisibilityOff className='visibility-icon' />
+												) : (
+													<Visibility className='visibility-icon' />
+												)}
+											</IconButton>
+										</InputAdornment>
+									),
+								}}
 							/>
-							{errors?.login && <h6 className='error'>{errors?.login}</h6>}
+							{errors?.password && (
+								<h6 className='error'>{errors?.password}</h6>
+							)}
 						</FormControl>
-					)}
-					<FormControl variant='standard'>
-						<TextField
-							className='input'
-							type='password'
-							label='Password'
-							size='small'
-							value={password}
-							onFocus={handleFocus}
-							onChange={(e) => handleChange('password', e.target.value)}
-						/>
-						{errors?.password && <h6 className='error'>{errors?.password}</h6>}
-					</FormControl>
-					<button>Submit</button>
-				</form>
+						<button type='submit'>Submit</button>
+					</form>
+				</div>
 			</Paper>
 		</div>
 	);

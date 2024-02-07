@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import ProtectedRoute from './components/ProtectedRoute';
 import MainLayout from './layouts/MainLayout';
 import Auth from './features/Auth';
 import Hub from './features/Hub';
@@ -14,20 +15,42 @@ function App() {
 			<Routes>
 				<Route path='/'>
 					<Route index element={<Auth />} />
-					<Route path='hub' element={<MainLayout children={<Hub />} />} />
+					<Route
+						path='hub'
+						element={
+							<ProtectedRoute element={<MainLayout children={<Hub />} />} />
+						}
+					/>
 					<Route
 						path='football'
-						element={<MainLayout children={<Football />} />}
+						element={
+							<ProtectedRoute
+								element={<MainLayout children={<Football />} />}
+							/>
+						}
 					/>
 					<Route
 						path='basketball'
-						element={<MainLayout children={<Basketball />} />}
+						element={
+							<ProtectedRoute
+								element={<MainLayout children={<Basketball />} />}
+							/>
+						}
 					/>
 					<Route
 						path='baseball'
-						element={<MainLayout children={<Baseball />} />}
+						element={
+							<ProtectedRoute
+								element={<MainLayout children={<Baseball />} />}
+							/>
+						}
 					/>
-					<Route path='hockey' element={<MainLayout children={<Hockey />} />} />
+					<Route
+						path='hockey'
+						element={
+							<ProtectedRoute element={<MainLayout children={<Hockey />} />} />
+						}
+					/>
 				</Route>
 			</Routes>
 		</Router>

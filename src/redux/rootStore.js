@@ -20,6 +20,7 @@ import hockeyReducer from './slices/hockeySlice';
 const userPersistConfig = {
 	key: 'user',
 	storage,
+	whitelist: ['user'],
 };
 
 const mlbPersistConfig = {
@@ -45,7 +46,7 @@ const nhlPersistConfig = {
 export const store = configureStore({
 	reducer: {
 		app: appReducer,
-		user: userReducer,
+		user: persistReducer(userPersistConfig, userReducer),
 		mlb: persistReducer(mlbPersistConfig, baseballReducer),
 		nba: persistReducer(nbaPersistConfig, basketballReducer),
 		nfl: persistReducer(nflPersistConfig, footballReducer),
