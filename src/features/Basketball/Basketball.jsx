@@ -1,8 +1,9 @@
 import React from 'react';
+import './basketball.scss';
 
 const Basketball = () => {
 	return (
-		<div>
+		<div id='basketball'>
 			<h1 style={{ color: 'white' }}>Basketball</h1>
 		</div>
 	);

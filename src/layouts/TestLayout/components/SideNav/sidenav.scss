@@ -1,0 +1,14 @@
+#sidenav {
+	.menu-icon {
+		color: var(--paragraph);
+	}
+
+	.divider {
+		border-bottom-color: var(--border);
+	}
+
+	.nav-item-list {
+		flex: 1;
+		border-right: 0.5px ridge var(--border);
+	}
+}

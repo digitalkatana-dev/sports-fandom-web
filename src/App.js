@@ -1,13 +1,14 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import './app.scss';
 import ProtectedRoute from './components/ProtectedRoute';
-import MainLayout from './layouts/MainLayout';
+import TestLayout from './layouts/TestLayout';
 import Auth from './features/Auth';
 import Hub from './features/Hub';
 import Baseball from './features/Baseball';
 import Basketball from './features/Basketball';
 import Football from './features/Football';
 import Hockey from './features/Hockey';
-import './app.scss';
+import Profile from './features/Profile';
 
 function App() {
 	return (
@@ -18,14 +19,14 @@ function App() {
 					<Route
 						path='hub'
 						element={
-							<ProtectedRoute element={<MainLayout children={<Hub />} />} />
+							<ProtectedRoute element={<TestLayout children={<Hub />} />} />
 						}
 					/>
 					<Route
 						path='football'
 						element={
 							<ProtectedRoute
-								element={<MainLayout children={<Football />} />}
+								element={<TestLayout children={<Football />} />}
 							/>
 						}
 					/>
@@ -33,7 +34,7 @@ function App() {
 						path='basketball'
 						element={
 							<ProtectedRoute
-								element={<MainLayout children={<Basketball />} />}
+								element={<TestLayout children={<Basketball />} />}
 							/>
 						}
 					/>
@@ -41,14 +42,20 @@ function App() {
 						path='baseball'
 						element={
 							<ProtectedRoute
-								element={<MainLayout children={<Baseball />} />}
+								element={<TestLayout children={<Baseball />} />}
 							/>
 						}
 					/>
 					<Route
 						path='hockey'
 						element={
-							<ProtectedRoute element={<MainLayout children={<Hockey />} />} />
+							<ProtectedRoute element={<TestLayout children={<Hockey />} />} />
+						}
+					/>
+					<Route
+						path='Profile'
+						element={
+							<ProtectedRoute element={<TestLayout children={<Profile />} />} />
 						}
 					/>
 				</Route>

@@ -1,6 +1,6 @@
 import { Box } from '@mui/material';
-import './main.scss';
 import DrawerSpacer from '../../../../components/DrawerSpacer';
+import './main.scss';
 
 const Main = ({ children }) => {
 	return (
@@ -10,12 +10,10 @@ const Main = ({ children }) => {
 				height: '100vh',
 				flexGrow: 1,
 				p: 3,
-				backgroundColor: 'var(--primary)',
-				border: '2px solid var(--highlight)',
 			}}
 		>
 			<DrawerSpacer />
-			{children}
+			<div id='content-container'>{children}</div>
 		</Box>
 	);
 };

@@ -1,11 +1,10 @@
 #hub {
-	height: 92.5%;
+	height: inherit;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	position: relative;
-	// border: 2px solid red;
 
 	.hub-news,
 	.hub-stats,
