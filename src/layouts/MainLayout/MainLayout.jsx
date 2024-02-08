@@ -1,14 +1,13 @@
-import { Box, CssBaseline } from '@mui/material';
+import { Box } from '@mui/material';
 import Topbar from './components/Topbar';
-import Sidebar from './components/Sidebar';
+import SideNav from './components/SideNav';
 import Main from './components/Main';
 
 const MainLayout = ({ children }) => {
 	return (
-		<Box sx={{ display: 'flex' }}>
-			<CssBaseline />
+		<Box sx={{ display: 'flex', flexDirection: 'column' }}>
 			<Topbar />
-			<Sidebar />
+			<SideNav />
 			<Main children={children} />
 		</Box>
 	);

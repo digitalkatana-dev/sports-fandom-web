@@ -1,31 +1,21 @@
-import { IconButton, Toolbar, Typography } from '@mui/material';
-import { MenuUnfoldOutlined } from '@ant-design/icons';
-import { useDispatch, useSelector } from 'react-redux';
-import { setDrawerOpen } from '../../../../redux/slices/appSlice';
+import { AppBar, Box, Stack, Toolbar } from '@mui/material';
 import './topbar.scss';
-import AppBar from '../../../../components/AppBar';
 
 const Topbar = () => {
-	const { drawerOpen } = useSelector((state) => state.app);
-	const dispatch = useDispatch();
-
-	const handleDrawer = () => {
-		dispatch(setDrawerOpen(true));
-	};
-
 	return (
-		<AppBar position='fixed' open={drawerOpen}>
+		<AppBar
+			id='topbar'
+			sx={{
+				boxShadow: 'none',
+				zIndex: 1101,
+				bgcolor: 'var(--secondary)',
+			}}
+		>
 			<Toolbar>
-				<IconButton
-					onClick={handleDrawer}
-					edge='start'
-					sx={{ marginRight: 5, ...(drawerOpen && { display: 'none' }) }}
-				>
-					<MenuUnfoldOutlined style={{ color: 'var(--paragraph)' }} />
-				</IconButton>
-				<Typography variant='h6' noWrap component='div'>
-					Sports Fandom
-				</Typography>
+				<Box sx={{ flexGrow: 1 }} />
+				<Stack direction='row' alignItems='center' spacing={1}>
+					<h6 style={{ color: 'white' }}>Sports Fandom</h6>
+				</Stack>
 			</Toolbar>
 		</AppBar>
 	);
