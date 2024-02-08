@@ -6,7 +6,12 @@ const Main = ({ children }) => {
 	return (
 		<Box
 			component='main'
-			sx={{ flexGrow: 1, p: 3, backgroundColor: 'var(--primary)' }}
+			sx={{
+				height: '100vh',
+				flexGrow: 1,
+				p: 3,
+				backgroundColor: 'var(--primary)',
+			}}
 		>
 			<DrawerHeader />
 			{children}

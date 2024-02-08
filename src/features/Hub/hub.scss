@@ -1,0 +1,168 @@
+#hub {
+	height: 92.5%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+	// border: 2px solid red;
+
+	.hub-news,
+	.hub-stats,
+	.hub-center,
+	.hub-players,
+	.hub-standings {
+		height: 45%;
+		width: 45%;
+		position: absolute;
+		transition: transform 2s ease;
+		background-color: var(--secondary);
+	}
+
+	.hub-news,
+	.hub-stats {
+		z-index: 0;
+	}
+
+	.hub-center {
+		z-index: 1;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		align-items: center;
+
+		.hub-header {
+			height: 15%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			color: var(--paragraph);
+		}
+
+		.hub-body {
+			height: 85%;
+			width: 100%;
+
+			.body-top,
+			.body-bottom {
+				height: 50%;
+				display: flex;
+				cursor: pointer;
+
+				h3 {
+					background: var(--secondary);
+					border-radius: 40px;
+					padding: 5px 10px;
+				}
+
+				.top-left,
+				.top-right,
+				.bottom-left,
+				.bottom-right {
+					width: 50%;
+					display: flex;
+					flex-direction: column;
+					justify-content: space-between;
+					align-items: center;
+					border: 1px solid var(--primary);
+
+					.wrapper {
+						height: 100%;
+						width: 100%;
+						display: flex;
+						justify-content: center;
+						align-items: center;
+					}
+				}
+			}
+
+			.body-top {
+				border: 1px solid black;
+				border-bottom: 0;
+
+				.top-left {
+					background: var(--primary) url('../../../public/football.jpg')
+						no-repeat fixed center;
+					background-size: contain;
+				}
+
+				.top-right {
+					background: var(--primary) url('../../../public/basketball.jpg')
+						no-repeat fixed center;
+					background-size: contain;
+				}
+			}
+
+			.body-bottom {
+				border: 1px solid black;
+
+				.bottom-left {
+					background: var(--primary) url('../../../public/baseball.jpg')
+						no-repeat fixed center;
+					background-size: contain;
+				}
+
+				.bottom-right {
+					background: var(--primary) url('../../../public/hockey.jpg') no-repeat
+						fixed center;
+					background-size: contain;
+				}
+			}
+		}
+	}
+
+	.hub-players,
+	.hub-standings {
+		z-index: 0;
+	}
+
+	.hub-players {
+		h1 {
+			position: absolute;
+			bottom: 0;
+		}
+	}
+
+	.hub-standings {
+		h1 {
+			position: absolute;
+			bottom: 0;
+			right: 0;
+		}
+	}
+
+	&.spread {
+		.hub-news {
+			transform: translate(-56%, -56%);
+
+			&:hover {
+				z-index: 2;
+			}
+		}
+
+		.hub-stats {
+			transform: translate(56%, -56%);
+			text-align: right;
+
+			&:hover {
+				z-index: 2;
+			}
+		}
+
+		.hub-players {
+			transform: translate(-56%, 56%);
+
+			&:hover {
+				z-index: 2;
+			}
+		}
+
+		.hub-standings {
+			transform: translate(56%, 56%);
+
+			&:hover {
+				z-index: 2;
+			}
+		}
+	}
+}
