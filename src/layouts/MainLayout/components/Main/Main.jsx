@@ -1,5 +1,5 @@
 import { Box } from '@mui/material';
-import DrawerSpacer from '../../../../components/DrawerSpacer';
+import DrawerSpacer from '../DrawerSpacer';
 import './main.scss';
 
 const Main = ({ children }) => {

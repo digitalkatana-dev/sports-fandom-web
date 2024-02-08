@@ -14,8 +14,8 @@ import { sideNav } from '../../../../util/data';
 import './sidenav.scss';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import LogoutIcon from '@mui/icons-material/Logout';
-import Drawer from '../../../../components/Drawer';
-import DrawerHeader from '../../../../components/DrawerHeader';
+import Drawer from '../Drawer';
+import DrawerHeader from '../DrawerHeader';
 
 const SideNav = () => {
 	const { user } = useSelector((state) => state.user);
