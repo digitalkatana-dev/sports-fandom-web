@@ -26,21 +26,25 @@ const userPersistConfig = {
 const mlbPersistConfig = {
 	key: 'mlb',
 	storage,
+	whitelist: ['mlbTeams'],
 };
 
 const nbaPersistConfig = {
 	key: 'nba',
 	storage,
+	whitelist: ['nbaTeams'],
 };
 
 const nflPersistConfig = {
 	key: 'nfl',
 	storage,
+	whitelist: ['nflTeams'],
 };
 
 const nhlPersistConfig = {
 	key: 'nhl',
 	storage,
+	whitelist: ['nhlTeams'],
 };
 
 export const store = configureStore({

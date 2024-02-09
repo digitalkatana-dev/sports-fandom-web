@@ -38,9 +38,33 @@ export const appSlice = createSlice({
 		toggleSpread: (state, action) => {
 			state.spread = action.payload;
 		},
+		setNFLFav: (state, action) => {
+			state.nflFav = action.payload.split(', ')[0];
+			state.nflFavKey = action.payload.split(', ')[1];
+		},
+		setNBAFav: (state, action) => {
+			state.nbaFav = action.payload.split(', ')[0];
+			state.nbaFavKey = action.payload.split(', ')[1];
+		},
+		setMLBFav: (state, action) => {
+			state.mlbFav = action.payload.split(', ')[0];
+			state.mlbFavKey = action.payload.split(', ')[1];
+		},
+		setNHLFav: (state, action) => {
+			state.nhlFav = action.payload.split(', ')[0];
+			state.nhlFavKey = action.payload.split(', ')[1];
+		},
 	},
 });
 
-export const { setDrawerOpen } = appSlice.actions;
+export const {
+	setDrawerOpen,
+	setSport,
+	toggleSpread,
+	setNFLFav,
+	setNBAFav,
+	setMLBFav,
+	setNHLFav,
+} = appSlice.actions;
 
 export default appSlice.reducer;
