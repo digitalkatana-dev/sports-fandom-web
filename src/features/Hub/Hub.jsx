@@ -108,13 +108,13 @@ const Hub = () => {
 
 	return (
 		<div id='hub' className={spread ? 'spread' : ''}>
-			<div className='hub-news'>
+			<Paper className='hub-news' elevation={spread ? 12 : 0}>
 				<h1>News</h1>
-			</div>
-			<div className='hub-stats'>
+			</Paper>
+			<Paper className='hub-stats' elevation={spread ? 12 : 0}>
 				<h1>Stats</h1>
-			</div>
-			<Paper className='hub-center' elevation={12}>
+			</Paper>
+			<Paper className='hub-center' elevation={!spread ? 12 : 0}>
 				<div className='hub-header'>
 					<h1>Hub</h1>
 				</div>
@@ -128,9 +128,9 @@ const Hub = () => {
 								<img src='/football.jpg' alt='football' />
 								<div className='overlay'>
 									{nflFav ? (
-										<h3>
+										<h5>
 											Favorite Team: <span>{nflFav}</span>
-										</h3>
+										</h5>
 									) : (
 										<TeamSelect
 											sport='football'
@@ -149,9 +149,9 @@ const Hub = () => {
 								<img src='/basketball.jpg' alt='basketball' />
 								<div className='overlay'>
 									{nbaFav ? (
-										<h3>
+										<h5>
 											Favorite Team: <span>{nbaFav}</span>
-										</h3>
+										</h5>
 									) : (
 										<TeamSelect
 											sport='basketball'
@@ -172,9 +172,9 @@ const Hub = () => {
 								<img src='/baseball.jpg' alt='baseball' />
 								<div className='overlay'>
 									{mlbFav ? (
-										<h3>
+										<h5>
 											Favorite Team: <span>{mlbFav}</span>
-										</h3>
+										</h5>
 									) : (
 										<TeamSelect
 											sport='baseball'
@@ -193,9 +193,9 @@ const Hub = () => {
 								<img src='/hockey.jpg' alt='hockey' />
 								<div className='overlay'>
 									{nhlFav ? (
-										<h3>
+										<h5>
 											Favorite Team: <span>{nhlFav}</span>
-										</h3>
+										</h5>
 									) : (
 										<TeamSelect
 											sport='hockey'
@@ -209,12 +209,12 @@ const Hub = () => {
 					</div>
 				</div>
 			</Paper>
-			<div className='hub-players'>
+			<Paper className='hub-players' elevation={spread ? 12 : 0}>
 				<h1>Players</h1>
-			</div>
-			<div className='hub-standings'>
+			</Paper>
+			<Paper className='hub-standings' elevation={spread ? 12 : 0}>
 				<h1>Standings</h1>
-			</div>
+			</Paper>
 		</div>
 	);
 };

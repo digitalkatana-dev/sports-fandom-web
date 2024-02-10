@@ -7,6 +7,7 @@ import {
 export const appAdapter = createEntityAdapter();
 const initialState = appAdapter.getInitialState({
 	loading: false,
+	isMobile: false,
 	drawerOpen: false,
 	sport: null,
 	spread: false,
@@ -29,6 +30,9 @@ export const appSlice = createSlice({
 	name: 'app',
 	initialState,
 	reducers: {
+		setIsMobile: (state, action) => {
+			state.isMobile = action.payload;
+		},
 		setDrawerOpen: (state, action) => {
 			state.drawerOpen = action.payload;
 		},
@@ -58,6 +62,7 @@ export const appSlice = createSlice({
 });
 
 export const {
+	setIsMobile,
 	setDrawerOpen,
 	setSport,
 	toggleSpread,

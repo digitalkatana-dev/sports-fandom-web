@@ -1,4 +1,4 @@
-#sidenav {
+#nav-content {
 	.menu-icon {
 		color: var(--paragraph);
 	}
@@ -8,7 +8,7 @@
 	}
 
 	.nav-item-list {
-		flex: 1;
+		height: calc(100vh - 65px);
 		border-right: 0.5px ridge var(--border);
 	}
 }
