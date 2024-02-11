@@ -1,0 +1,76 @@
+#stats-tile {
+	height: 89%;
+	padding: 20px;
+	box-sizing: border-box;
+
+	.wrapper {
+		box-sizing: border-box;
+		height: 100%;
+		display: flex;
+		justify-content: center;
+		flex-wrap: wrap;
+		gap: 20px;
+		overflow-x: hidden;
+
+		&::-webkit-scrollbar {
+			display: none;
+		}
+
+		.team-card {
+			box-sizing: border-box;
+			height: 250px;
+			width: 200px;
+			background: #242629;
+			color: #94a1b2;
+			border-radius: 10px;
+			display: flex;
+			flex-direction: column;
+			justify-content: space-around;
+			align-items: center;
+
+			.tc-top {
+				box-sizing: border-box;
+				width: 100%;
+				padding: 10px;
+				.img-container {
+					margin: auto;
+					height: 80px;
+					width: 80px;
+					border-radius: 100%;
+					background: grey;
+					display: flex;
+					flex-direction: column;
+					justify-content: center;
+					align-items: center;
+
+					img {
+						height: 80px;
+						border-radius: 100%;
+					}
+				}
+			}
+
+			.tc-center {
+				h5 {
+					color: whitesmoke;
+				}
+			}
+
+			.tc-bottom {
+				box-sizing: border-box;
+				width: 100%;
+				padding: 10px;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+
+				.stat-wrapper {
+					width: inherit;
+					display: flex;
+					justify-content: space-between;
+					align-items: center;
+				}
+			}
+		}
+	}
+}

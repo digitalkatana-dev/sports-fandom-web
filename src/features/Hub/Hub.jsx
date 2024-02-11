@@ -6,7 +6,7 @@ import {
 	setNBAFav,
 	setMLBFav,
 	setNHLFav,
-	setSport,
+	setSelectedSport,
 	toggleSpread,
 } from '../../redux/slices/appSlice';
 import {
@@ -31,9 +31,14 @@ import {
 } from '../../redux/slices/hockeySlice';
 import './hub.scss';
 import TeamSelect from '../../components/TeamSelect';
+import NewsTile from '../../components/NewsTile';
+import StatsTile from '../../components/StatsTitle';
+import PlayersTile from '../../components/PlayersTile';
+import StandingsTile from '../../components/StandingsTile';
 
 const Hub = () => {
 	const {
+		selectedSport,
 		spread,
 		nflFav,
 		nflFavKey,
@@ -45,11 +50,46 @@ const Hub = () => {
 		nhlFavKey,
 	} = useSelector((state) => state.app);
 	const { user } = useSelector((state) => state.user);
-	const { nflTeams } = useSelector((state) => state.nfl);
-	const { nbaTeams } = useSelector((state) => state.nba);
-	const { mlbTeams } = useSelector((state) => state.mlb);
-	const { nhlTeams } = useSelector((state) => state.nhl);
+	const { nflTeams, nflNews, nflStats, nflPlayers, nflStandings } = useSelector(
+		(state) => state.nfl
+	);
+	const { nbaTeams, nbaNews, nbaStats, nbaPlayers, nbaStandings } = useSelector(
+		(state) => state.nba
+	);
+	const { mlbTeams, mlbNews, mlbStats, mlbPlayers, mlbStandings } = useSelector(
+		(state) => state.mlb
+	);
+	const { nhlTeams, nhlNews, nhlStats, nhlPlayers, nhlStandings } = useSelector(
+		(state) => state.nhl
+	);
 	const dispatch = useDispatch();
+
+	let news;
+	let stats;
+	let players;
+	let standings;
+
+	if (selectedSport === 'nfl') {
+		news = nflNews;
+		stats = nflStats;
+		players = nflPlayers;
+		standings = nflStandings;
+	} else if (selectedSport === 'nba') {
+		news = nbaNews;
+		stats = nbaStats;
+		players = nbaPlayers;
+		standings = nbaStandings;
+	} else if (selectedSport === 'mlb') {
+		news = mlbNews;
+		stats = mlbStats;
+		players = mlbPlayers;
+		standings = mlbStandings;
+	} else if (selectedSport === 'nhl') {
+		news = nhlNews;
+		stats = nhlStats;
+		players = nhlPlayers;
+		standings = nhlStandings;
+	}
 
 	const handleChange = (e, sport) => {
 		const actionMap = {
@@ -79,9 +119,9 @@ const Hub = () => {
 			action = actionMap[sport];
 
 			action && dispatch(action);
-			dispatch(setSport(sport));
+			dispatch(setSelectedSport(sport));
 			dispatch(toggleSpread(true));
-		} else {
+		} else if (spread === true && sport === selectedSport) {
 			actionMap = {
 				nfl: clearNFLNews,
 				nba: clearNBANews,
@@ -111,9 +151,11 @@ const Hub = () => {
 		<div id='hub' className={spread ? 'spread' : ''}>
 			<Paper className='hub-news' elevation={spread ? 12 : 0}>
 				<h2>News</h2>
+				<NewsTile news={news} />
 			</Paper>
 			<Paper className='hub-stats' elevation={spread ? 12 : 0}>
 				<h2>Stats</h2>
+				<StatsTile stats={stats} />
 			</Paper>
 			<Paper className='hub-center' elevation={!spread ? 12 : 0}>
 				<div className='hub-header'>
@@ -216,9 +258,11 @@ const Hub = () => {
 			</Paper>
 			<Paper className='hub-players' elevation={spread ? 12 : 0}>
 				<h2>Players</h2>
+				<PlayersTile players={players} />
 			</Paper>
 			<Paper className='hub-standings' elevation={spread ? 12 : 0}>
 				<h2>Standings</h2>
+				<StandingsTile standings={standings} />
 			</Paper>
 		</div>
 	);

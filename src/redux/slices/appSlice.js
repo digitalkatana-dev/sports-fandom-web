@@ -9,7 +9,7 @@ const initialState = appAdapter.getInitialState({
 	loading: false,
 	isMobile: false,
 	drawerOpen: false,
-	sport: null,
+	selectedSport: null,
 	spread: false,
 	nflFav: null,
 	nflFavKey: null,
@@ -36,8 +36,8 @@ export const appSlice = createSlice({
 		setDrawerOpen: (state, action) => {
 			state.drawerOpen = action.payload;
 		},
-		setSport: (state, action) => {
-			state.sport = action.payload;
+		setSelectedSport: (state, action) => {
+			state.selectedSport = action.payload;
 		},
 		toggleSpread: (state, action) => {
 			state.spread = action.payload;
@@ -64,7 +64,7 @@ export const appSlice = createSlice({
 export const {
 	setIsMobile,
 	setDrawerOpen,
-	setSport,
+	setSelectedSport,
 	toggleSpread,
 	setNFLFav,
 	setNBAFav,
