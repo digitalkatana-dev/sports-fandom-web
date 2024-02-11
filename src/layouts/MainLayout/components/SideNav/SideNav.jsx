@@ -20,6 +20,7 @@ const SideNav = () => {
 					onClose={handleClose}
 					sx={{
 						'& .MuiDrawer-paper': {
+							width: 170,
 							backgroundColor: 'var(--primary)',
 						},
 					}}

@@ -6,6 +6,7 @@ import HockeyIcon from '@mui/icons-material/SportsHockey';
 
 export const breakpoints = {
 	xs: 0,
+	ms: 600,
 	sm: 768,
 	md: 1024,
 	lg: 1266,

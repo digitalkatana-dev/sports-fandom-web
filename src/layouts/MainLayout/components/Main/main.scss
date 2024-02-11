@@ -1,5 +1,10 @@
 #content-container {
 	height: 92.5%;
-	margin-left: 65px;
 	// border: 2px solid red;
+}
+
+@media only screen and (min-width: 600px) {
+	#content-container {
+		margin-left: 65px;
+	}
 }

@@ -12,7 +12,7 @@ const MainLayout = ({ children }) => {
 
 	const handleMobile = useCallback(() => {
 		const handleResize = () => {
-			if (window.innerWidth <= breakpoints.md) {
+			if (window.innerWidth < breakpoints.ms) {
 				dispatch(setIsMobile(true));
 			} else {
 				dispatch(setIsMobile(false));

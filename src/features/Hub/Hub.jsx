@@ -44,6 +44,7 @@ const Hub = () => {
 		nhlFav,
 		nhlFavKey,
 	} = useSelector((state) => state.app);
+	const { user } = useSelector((state) => state.user);
 	const { nflTeams } = useSelector((state) => state.nfl);
 	const { nbaTeams } = useSelector((state) => state.nba);
 	const { mlbTeams } = useSelector((state) => state.mlb);
@@ -109,14 +110,14 @@ const Hub = () => {
 	return (
 		<div id='hub' className={spread ? 'spread' : ''}>
 			<Paper className='hub-news' elevation={spread ? 12 : 0}>
-				<h1>News</h1>
+				<h2>News</h2>
 			</Paper>
 			<Paper className='hub-stats' elevation={spread ? 12 : 0}>
-				<h1>Stats</h1>
+				<h2>Stats</h2>
 			</Paper>
 			<Paper className='hub-center' elevation={!spread ? 12 : 0}>
 				<div className='hub-header'>
-					<h1>Hub</h1>
+					<h2>{`${user.firstName}'s Hub`}</h2>
 				</div>
 				<div className='hub-body'>
 					<div className='body-top'>
@@ -128,9 +129,10 @@ const Hub = () => {
 								<img src='/football.jpg' alt='football' />
 								<div className='overlay'>
 									{nflFav ? (
-										<h5>
-											Favorite Team: <span>{nflFav}</span>
-										</h5>
+										<div className='fav-team-container'>
+											<h3>Favorite Team:</h3>
+											<h3>{nflFav}</h3>
+										</div>
 									) : (
 										<TeamSelect
 											sport='football'
@@ -149,9 +151,10 @@ const Hub = () => {
 								<img src='/basketball.jpg' alt='basketball' />
 								<div className='overlay'>
 									{nbaFav ? (
-										<h5>
-											Favorite Team: <span>{nbaFav}</span>
-										</h5>
+										<div className='fav-team-container'>
+											<h3>Favorite Team:</h3>
+											<h3>{nbaFav}</h3>
+										</div>
 									) : (
 										<TeamSelect
 											sport='basketball'
@@ -172,9 +175,10 @@ const Hub = () => {
 								<img src='/baseball.jpg' alt='baseball' />
 								<div className='overlay'>
 									{mlbFav ? (
-										<h5>
-											Favorite Team: <span>{mlbFav}</span>
-										</h5>
+										<div className='fav-team-container'>
+											<h3>Favorite Team:</h3>
+											<h3>{mlbFav}</h3>
+										</div>
 									) : (
 										<TeamSelect
 											sport='baseball'
@@ -193,9 +197,10 @@ const Hub = () => {
 								<img src='/hockey.jpg' alt='hockey' />
 								<div className='overlay'>
 									{nhlFav ? (
-										<h5>
-											Favorite Team: <span>{nhlFav}</span>
-										</h5>
+										<div className='fav-team-container'>
+											<h3>Favorite Team:</h3>
+											<h3>{nhlFav}</h3>
+										</div>
 									) : (
 										<TeamSelect
 											sport='hockey'
@@ -210,10 +215,10 @@ const Hub = () => {
 				</div>
 			</Paper>
 			<Paper className='hub-players' elevation={spread ? 12 : 0}>
-				<h1>Players</h1>
+				<h2>Players</h2>
 			</Paper>
 			<Paper className='hub-standings' elevation={spread ? 12 : 0}>
-				<h1>Standings</h1>
+				<h2>Standings</h2>
 			</Paper>
 		</div>
 	);
